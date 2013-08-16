@@ -1,0 +1,27 @@
+<serviceGroup>
+	<service name="AutoClaim"  scope="application">
+		<Description>
+			Pharos AutoClaim4CTM web service
+		</Description>
+		 <messageReceivers>
+	        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+	                         class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+	        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+	                         class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	    </messageReceivers>
+	    <parameter name="ServiceClass">pharos.eht.autoClaim.CTMInfoService</parameter>
+	</service>
+	
+	<service name="AutoClaim4ClaimInfo"  scope="application">
+		<Description>
+			Pharos AutoClaim4Claim web service
+		</Description>
+		 <messageReceivers>
+	        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+	                         class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+	        <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+	                         class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	    </messageReceivers>
+	    <parameter name="ServiceClass">pharos.eht.autoClaim.ClaimInfoService</parameter>
+	</service>
+</serviceGroup>
