@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project basedir="." default="aar.module" name="autoClaim.aar">
+	<property environment="env" />
+	<tstamp />
+
+	<property name="javahome" value="${env.JAVA_HOME}/bin" />
+	
+	<property name="tomcathome" value="${env.TOMCAT_HOME}"/>
+	<property name="jbosshome" value="${env.JBOSS_HOME}"/>
+	
+	<property name="jbossDeploy" value="${jbosshome}/server/default/deploy"></property>
+	
+	<property name="jbossclientlib" value="${jbosshome}/client"></property>
+	<property name="tomcatlib" value="${tomcathome}/server/lib/autoClaim" />
+	
+	
+	<property name="bin.dir" value="./bin" />
+	<property name="depends.dir" value="../dependences" />
+	<property name="commonlib" value="${depends.dir}/common-lib" />
+	<property name="pharoslib" value="${depends.dir}/lib" />
+	
+	<property name="dist.dir" value="${depends.dir}/dist" />
+	<property name="jar.file" value="${depends.dir}/dist/services/autoClaim.aar"/>
+
+	<path id="base.classpath">
+		<fileset dir="${depends.dir}/lib">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+		<fileset dir="${depends.dir}/common-lib">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+ 
+
+	<target name="compile.module" >
+		<javac encoding="UTF-8" source="1.6" target="1.6" destdir="${bin.dir}" debug="on" includes="pharos/eht/**/*.java">
+			<src path="src" />
+			<classpath refid="base.classpath" />
+		</javac>
+	</target>
+
+	<target name="aar.module" depends="compile.module">
+		<delete file="${jar.file}"/>
+		<jar jarfile="${jar.file}">
+			<fileset dir="${bin.dir}">
+				<exclude name="**/test/**"/>
+			</fileset>
+		</jar>
+	</target>
+
+</project>
